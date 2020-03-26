@@ -15,8 +15,10 @@
         data() {
             return {
                 videoOptions: {
-                    autoplay: true,
                     controls: true,
+                    preload: 'auto',
+                    playbackRates: [0.5, 1, 1.5, 2],
+                    liveui: true,
                     sources: [
                         {
                             src: "https://video2.hsanhl.com/btt1/2020/03/20200325/oWvwdzmz/index.m3u8",
