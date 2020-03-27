@@ -2,29 +2,35 @@
     <div id="app">
         <a-layout id="components-layout">
             <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
-                <div class="logo"/>
+                <div class="logo">
+                    <a-icon type="file-markdown"/>
+                    <span>M3U8.net.cn</span>
+                </div>
                 <a-menu
                         theme="dark"
                         mode="horizontal"
-                        :defaultSelectedKeys="['1']"
+                        :defaultSelectedKeys="[$route.name]"
+                        :selectedKeys="[$route.name]"
                         :style="{ lineHeight: '64px' }"
                 >
-                    <a-menu-item key="1">
-                        <router-link :to="{name: 'home'}">播放器</router-link>
+                    <a-menu-item key="home">
+                        <router-link :to="{name: 'home'}"><a-icon type="play-circle"/>播放器</router-link>
                     </a-menu-item>
-                    <a-menu-item key="2">
-                        <router-link :to="{name: 'user'}">用户中心</router-link>
+                    <a-menu-item key="user">
+                        <router-link :to="{name: 'user'}"><a-icon type="user"/>用户中心</router-link>
                     </a-menu-item>
                 </a-menu>
             </a-layout-header>
             <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
                 <a-breadcrumb :style="{ margin: '16px 0' }">
-                    <a-breadcrumb-item v-for="(item, index) in breadcrumb" v-bind:key="index">
-                        <router-link v-if="item.path" :to="{name: item.path}">{{ item.name }}</router-link>
+                    <a-breadcrumb-item v-for="item of breadcrumb" :key="item.meta.name">
+                        <router-link :to="{name: item.meta.path}">{{ item.meta.name }}</router-link>
                     </a-breadcrumb-item>
                 </a-breadcrumb>
                 <div :style="{ background: '#fff', padding: '24px', minHeight: '380px' }">
-                    <router-view></router-view>
+                    <keep-alive>
+                        <router-view></router-view>
+                    </keep-alive>
                 </div>
             </a-layout-content>
             <a-layout-footer :style="{ textAlign: 'center' }">
@@ -39,28 +45,37 @@
     export default {
         name: 'App',
         data() {
-            return {}
-        },
-        /*props: {
-            breadcrumb: {
-                type: Array,
-                default: function () {
-                    return [];
-                }
-            },
+            return {
+                breadcrumb: this.$store.state.breadcrumb
+            }
         },
         mounted() {
-            console.log(this.breadcrumb);
-        }*/
+            this.openNotification();
+        },
+        methods: {
+            openNotification() {
+                this.$notification['info']({
+                    message: '站内通知',
+                    description:
+                        '免费的在线M3U8播放器，不提供视频资源',
+                });
+            },
+        },
     }
 </script>
 
 <style>
     #components-layout .logo {
-        width: 120px;
         height: 31px;
-        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        line-height: 31px;
+        font-size: 24px;
         margin: 16px 24px 16px 0;
         float: left;
+    }
+
+    #components-layout .logo span {
+        display: inline-block;
+        margin-left: 10px;
     }
 </style>

@@ -19,6 +19,14 @@
         computed: {
 
         },
+        beforeDestroy() {
+            console.log(123);
+        },
+        beforeRouteUpdate(to, from, next) {
+            this.$store.state.breadcrumb.push(to);
+            this.$store.state.breadcrumb.push(from);
+            next();
+        },
     }
 </script>
 
