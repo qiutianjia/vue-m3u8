@@ -4,8 +4,6 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-// import store from '@/store';
-
 import HomePage from "./components/HomePage";
 import UserPage from "./components/UserPage";
 
@@ -14,11 +12,17 @@ const routes = [
         path: "/home",
         component: HomePage,
         name: "home",
+        meta: {
+            title: '播放器'
+        }
     },
     {
         path: "/user",
         component: UserPage,
         name: "user",
+        meta: {
+            title: '用户中心'
+        }
     },
     {
         path: '/',
@@ -30,11 +34,5 @@ let router = new VueRouter({
     mode: 'history',
     routes
 });
-
-/*
-router.beforeEach((to, from, next) => {
-
-});
-*/
 
 export default router;

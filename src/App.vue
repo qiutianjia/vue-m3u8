@@ -23,8 +23,8 @@
             </a-layout-header>
             <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
                 <a-breadcrumb :style="{ margin: '16px 0' }">
-                    <a-breadcrumb-item v-for="item of breadcrumb" :key="item.meta.name">
-                        <router-link :to="{name: item.meta.path}">{{ item.meta.name }}</router-link>
+                    <a-breadcrumb-item v-for="item of breadcrumb" :key="item.meta.title">
+                        <router-link :to="{name: item.name}">{{ item.meta.title }}</router-link>
                     </a-breadcrumb-item>
                 </a-breadcrumb>
                 <div :style="{ background: '#fff', padding: '24px', minHeight: '380px' }">
@@ -60,6 +60,19 @@
                         '免费的在线M3U8播放器，不提供视频资源',
                 });
             },
+            initBreadcrumb() {
+                let matched = this.$route.matched;
+                // console.log(matched);
+                this.breadcrumb = [{path: "/", meta: {title: "M3U8"}}].concat(matched);
+            },
+        },
+        created(){
+            this.initBreadcrumb();
+        },
+        watch: {
+            $route() {
+                this.initBreadcrumb();
+            }
         },
     }
 </script>

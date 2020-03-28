@@ -6,12 +6,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        breadcrumb:[
-            {
-                meta: {
-                    name: 'M3U8',
-                }
-            }
-        ]
+
     },
 })
