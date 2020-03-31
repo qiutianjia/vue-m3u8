@@ -14,10 +14,16 @@
                         :style="{ lineHeight: '64px' }"
                 >
                     <a-menu-item key="home">
-                        <router-link :to="{name: 'home'}"><a-icon type="play-circle"/>播放器</router-link>
+                        <router-link :to="{name: 'home'}">
+                            <a-icon type="play-circle"/>
+                            播放器
+                        </router-link>
                     </a-menu-item>
                     <a-menu-item key="user">
-                        <router-link :to="{name: 'user'}"><a-icon type="user"/>用户中心</router-link>
+                        <router-link :to="{name: 'user'}">
+                            <a-icon type="dashboard"/>
+                            用户中心
+                        </router-link>
                     </a-menu-item>
                 </a-menu>
             </a-layout-header>
@@ -66,7 +72,7 @@
                 this.breadcrumb = [{path: "/", meta: {title: "M3U8"}}].concat(matched);
             },
         },
-        created(){
+        created() {
             this.initBreadcrumb();
         },
         watch: {

@@ -35,7 +35,7 @@
     ];
 
     export default {
-        name: 'History',
+        name: 'Diff',
         mounted() {
             this.fetch();
         },
